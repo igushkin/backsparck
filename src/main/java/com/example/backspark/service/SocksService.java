@@ -78,6 +78,7 @@ public class SocksService {
     @Transactional
     public void batchInsert(MultipartFile file) {
         try {
+            if (!CSVHelper.hasCSVFormat(file)) throw new RuntimeException("Only CSV format supported");
             var socks = CSVHelper.csvToSocks(file.getInputStream());
             socksRepository.saveAll(socks);
         } catch (IOException e) {

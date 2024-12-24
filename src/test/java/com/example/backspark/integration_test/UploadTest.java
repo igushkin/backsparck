@@ -34,7 +34,7 @@ public class UploadTest {
             Files.writeString(file, "red,35,5" + System.lineSeparator(), StandardOpenOption.APPEND);
 
         var stream = new FileInputStream(file.toFile());
-        var multipartFile = new MockMultipartFile("file", file.getFileName().toString(), MediaType.APPLICATION_OCTET_STREAM_VALUE, stream);
+        var multipartFile = new MockMultipartFile("file", file.getFileName().toString(), "text/csv", stream);
 
         this.socksService.batchInsert(multipartFile);
         var dbResult = em.createQuery("select st from SocksTransaction st", SocksTransaction.class).getResultList();

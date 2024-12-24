@@ -79,7 +79,6 @@ public class SocksController {
     @Operation(summary = "Загрузка носков из файла")
     @PostMapping("/api/socks/batch")
     public void batchInsert(@RequestParam("file") MultipartFile file) {
-        if (!CSVHelper.hasCSVFormat(file)) throw new RuntimeException("Only CSV format supported");
         socksService.batchInsert(file);
     }
 }
